@@ -20,14 +20,6 @@ const Product = sequelize.define('product', {
     type: DataTypes.DECIMAL,
     allowNull: false
   },
-
-
-  // stock: {
-  //   type: DataTypes.INTEGER,
-  //   allowNull: true,
-  //   defaultValue: 10
-  // },
- 
 });
 
 module.exports = Product;

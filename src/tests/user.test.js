@@ -14,9 +14,7 @@ beforeAll(async () => {
     const res = await request(app)
      .post(`${BASE_URL}/login`)
      .send(body)
-    
-    // console.log(res.body.token);
-
+  
     TOKEN = res.body.token
 })
 

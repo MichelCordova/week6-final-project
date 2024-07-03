@@ -4,23 +4,27 @@ const Product = require('./Product')
 const Purchase = require('./Purchase')
 const User = require('./User')
 
-//Product -> categoryId
+//!PRODUCT AND CATEGORY
 Product.belongsTo(Category)
 Category.hasMany(Product)
 
-//Cart -> userId
+//!CART AND USER
 Cart.belongsTo(User)
 User.hasMany(Cart)
 
-//Cart -> productId
+//!Cart 
+
 Cart.belongsTo(Product)
 Product.hasMany(Cart)
 
 
-//Purchase -> userId
+//!USER ID
+
 Purchase.belongsTo(User)
 User.hasMany(Purchase)
 
-//Purchase -> productId
+
+//! COLUM PURCHASE -> FOR PRODUCTID
+
 Purchase.belongsTo(Product)
 Product.hasMany(Purchase)

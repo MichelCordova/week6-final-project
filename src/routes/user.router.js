@@ -12,7 +12,7 @@ routerUser.route('/login') //! /_> users/login
     .post(login)
 
 routerUser.route('/:id')
-    .delete(verifyJwt, remove)
-    .put(verifyJwt, update);
+    .delete(verifyJwt, remove)//🔐
+    .put(verifyJwt, update); //🔐
 
 module.exports = routerUser;
