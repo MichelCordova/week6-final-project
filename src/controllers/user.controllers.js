@@ -22,8 +22,6 @@ const remove = catchError(async(req, res) => {
 });
 
 const update = catchError(async(req, res) => {
-
-    // remove fields
     const fieldsRemove = ['password', 'email']
 
     fieldsRemove.forEach((field) => delete req.body[field]);
@@ -58,10 +56,17 @@ return res.status(200).json({ user, token})
 
 })
 
+const logged = catchError(async (req, res) => {
+    const userId = req.user.id
+    const result = await User.findByPk(userId)
+    return res.json(result)
+})
+
 module.exports = {
     getAll,
     create,
     remove,
     update,
-    login
+    login,
+    logged
 }

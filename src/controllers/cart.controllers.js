@@ -2,6 +2,7 @@ const catchError = require('../utils/catchError');
 const Cart = require('../models/Cart');
 const Product = require('../models/Product');
 const Category = require('../models/Category');
+const ProductImg = require('../models/ProductImg');
 
 const getAll = catchError(async (req, res) => {
   const userId = req.user.id
@@ -16,6 +17,13 @@ const getAll = catchError(async (req, res) => {
           {
             model: Category,
             attributes: ['name']
+          },
+          {
+            model: Category,
+            attributes: ["name"]
+          },
+          {
+            model: ProductImg
           }
         ]
       }
@@ -27,9 +35,6 @@ const getAll = catchError(async (req, res) => {
 const create = catchError(async (req, res) => {
   const { quantity, productId } = req.body
   const userId = req.user.id
-
-  // const product = await Product.findByPk(productId)
-  // if (!product) return res.sendStatus(404)
 
   const body = { userId, quantity, productId }
 
@@ -62,8 +67,6 @@ const getOne = catchError(async (req, res) => {
 });
 
 const remove = catchError(async (req, res) => {
-  //quantity, productId, userId, id, times
-
   const { id } = req.params;
   const result = await Cart.destroy({
     where: {
@@ -77,11 +80,11 @@ const remove = catchError(async (req, res) => {
 
 const update = catchError(async (req, res) => {
   const userId = req.user.id
-  //quantity, productId, userId, id, times
+
   const { id } = req.params;
   const { quantity } = req.body
   const result = await Cart.update(
-    { quantity }, //quantity, productId, userId
+    { quantity }, 
     { where: { id, userId }, returning: true }
   );
   if (result[0] === 0) return res.sendStatus(404);

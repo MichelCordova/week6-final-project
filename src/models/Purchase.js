@@ -6,7 +6,6 @@ const Purchase = sequelize.define('purchase', {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-
   //!userId
   //!productId
 });
